@@ -8,16 +8,35 @@ export const GET = async (req, res) => {
         await connectDB();
         const { searchParams } = new URL(req.url);
         const category = searchParams.get('category');
-        
+        const page = searchParams.get('page');
+        const limit = searchParams.get('limit');
+
+        //page convert  data
+        const currentPage = parseInt(page);
+        const limitPage = parseInt(limit);
+        const skip = ((currentPage - 1) * limitPage);
+        const totalCount = await animalDB.countDocuments();
+        const totalPage = Math.ceil(totalCount / limit);
+
+
+
+
+
+
+
         let filter = {};
         if (category) {
             filter.category = category;
         }
 
-        const pd = await animalDB.find(filter);
+        const product = await animalDB.find(filter).skip(skip).limit(limitPage);
 
         //success
-        return NextResponse.json(pd)
+        return NextResponse.json({
+            totalPage,
+            currentPage,
+            product
+        })
 
 
     } catch (error) {
