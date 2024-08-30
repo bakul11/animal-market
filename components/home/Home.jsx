@@ -131,7 +131,7 @@ const Home = () => {
 
                 <div className="page">
                     {Array.from({ length: totalPage }, (_, index) => (
-                        <button className={`text-white  p-2 px-5 mx-2 rounded-sm ${currentPage === index + 1 ? 'bg-red-600' : 'bg-blue-400'}`} onClick={() => handleChange(index)}>
+                        <button className={`text-white  p-2 px-5 mx-2 rounded-sm ${currentPage === index + 1 ? 'bg-red-600' : 'bg-blue-400'}`} onClick={() => handleChange(index)} key={index}>
                             {index + 1}
                         </button>
                     ))}

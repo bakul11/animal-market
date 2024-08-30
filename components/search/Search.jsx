@@ -1,4 +1,5 @@
 "use client"
+import Image from 'next/image';
 import React, { useState } from 'react';
 
 
@@ -37,7 +38,7 @@ const Search = () => {
                                 return (
                                     <div className="pd flex items-center p-2  gap-5" key={index}>
                                         <div className="logo">
-                                            <img src={photo} alt="photo" className='object-cover h-8 w-8' />
+                                            <Image src={photo} alt="photo" className='object-cover h-8 w-8' height={500} width={500} />
                                         </div>
 
                                         <div className="title">
